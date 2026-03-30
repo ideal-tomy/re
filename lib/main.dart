@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:re/core/theme.dart';
-import 'package:re/features/chat/presentation/screens/chat_screen.dart';
+import 'package:re/features/home/presentation/screens/home_screen.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       scrollBehavior: const AppScrollBehavior(),
-      home: const ChatScreen(),
+      home: const HomeScreen(),
     );
   }
 }

@@ -6,16 +6,24 @@ import 'package:re/features/character/presentation/screens/character_select_scre
 import 'package:re/features/chat/presentation/widgets/status_side_panel.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  final int initialIndex;
+  const ChatScreen({super.key, this.initialIndex = 0});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
+  late PageController _pageController;
+  late int _currentIndex;
   bool _isPanelOpen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+    _pageController = PageController(initialPage: _currentIndex);
+  }
 
   void _openLibrary() async {
     final selectedChar = await Navigator.push<Character>(
@@ -57,15 +65,28 @@ class _ChatScreenState extends State<ChatScreen> {
             },
           ),
           
-          // ライブラリボタン（トップ左）
+          // ライブラリボタン（トップ左：以前のグリッドボタン）
           Positioned(
             top: 60,
             left: 20,
-            child: FloatingActionButton.small(
-              onPressed: _openLibrary,
-              backgroundColor: AppTheme.primaryWhite.withOpacity(0.9),
-              elevation: 4,
-              child: const Icon(Icons.grid_view_rounded, color: AppTheme.textDark),
+            child: Row(
+              children: [
+                FloatingActionButton.small(
+                  heroTag: 'back_button',
+                  onPressed: () => Navigator.pop(context),
+                  backgroundColor: AppTheme.primaryWhite.withOpacity(0.9),
+                  elevation: 4,
+                  child: const Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.textDark, size: 18),
+                ),
+                const SizedBox(width: 8),
+                FloatingActionButton.small(
+                  heroTag: 'library_button',
+                  onPressed: _openLibrary,
+                  backgroundColor: AppTheme.primaryWhite.withOpacity(0.9),
+                  elevation: 4,
+                  child: const Icon(Icons.grid_view_rounded, color: AppTheme.textDark),
+                ),
+              ],
             ),
           ),
 

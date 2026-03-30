@@ -97,21 +97,6 @@ class StatusSidePanel extends StatelessWidget {
                 subtitle: char.status,
               ),
               
-              const Divider(height: 60),
-
-              _buildSectionTitle(Icons.history_edu, "現代解釈ログ", Colors.amber),
-              const SizedBox(height: 16),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  _buildChipper("コンビニ: 豊穣の角"),
-                  _buildChipper("スマホ: 魂の記録板"),
-                  _buildChipper("SNS: 言霊の戦場"),
-                  _buildChipper("AI: 非有機的知性"),
-                ],
-              ),
-              
               const SizedBox(height: 40),
               
               const Text(
